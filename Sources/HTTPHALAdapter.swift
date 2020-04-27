@@ -18,7 +18,7 @@ func parseHALLinks(_ halLinks:[String:Any]) -> [String:[HTTPTransition]] {
       let transition = HTTPTransition(uri: href)
       links[relation] = [transition]
     } else if let options = options as? [[String:Any]] {
-      links[relation] = options.flatMap {
+      links[relation] = options.compactMap {
         if let href = $0["href"] as? String {
           return HTTPTransition(uri: href)
         }
